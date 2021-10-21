@@ -1,16 +1,4 @@
 
-git_path=$(whereis -b git | awk -F": " '{print $2}')
-if [ ! -f "$git_path" ]; then
-	echo "Seems like git is not installed. How did you even get here?"
-	sudo apt install -y git
-
-	git config --global user.name "buildslave"
-	git config --global user.email "buildslave@demo.mail"
-	git config --global core.autocrlf false
-	git config --global core.filemode false
-	git config --global color.ui true
-fi
-
 if [ ! -e "depot_tools" ]; then
 	echo "Google depot_tools not found, cloning those first"
 	git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
