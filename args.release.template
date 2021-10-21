@@ -1,0 +1,7 @@
+dcheck_always_on = false
+is_debug = false
+target_cpu = "x64"
+is_component_build = false
+v8_static_library = true
+v8_enable_i18n_support = false
+v8_use_external_startup_data = false
