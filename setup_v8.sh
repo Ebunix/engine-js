@@ -19,6 +19,9 @@ gclient sync
 
 echo "Seting up build..."
 
+rm -rf ./out.gn/x64.release
+rm -rf ./out.gn/x64.debug
+
 python tools/dev/v8gen.py x64.release
 python tools/dev/v8gen.py x64.debug
 
