@@ -1,14 +1,20 @@
 add_library(corejs
     corejs.cpp)
+    
+add_compile_definitions(V8_COMPRESS_POINTERS)
+add_compile_definitions(V8_31BIT_SMIS_ON_64BIT_ARCH)
 
-# set( CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -stdlib=${CMAKE_SOURCE_DIR}/v8/v8/out.gn/x64.release/libc++.so")
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+target_link_libraries(corejs Threads::Threads)
+target_link_libraries(corejs ${CMAKE_DL_LIBS})
 
 target_include_directories(corejs PUBLIC "${PROJECT_BINARY_DIR}" "${CMAKE_SOURCE_DIR}/v8/v8/include")
 
-#target_link_libraries(corejs ${CMAKE_SOURCE_DIR}/v8/v8/out.gn/x64.release/libc++.so)
-target_link_libraries(corejs ${CMAKE_SOURCE_DIR}/v8/v8/out.gn/x64.release/libv8.so)
-target_link_libraries(corejs ${CMAKE_SOURCE_DIR}/v8/v8/out.gn/x64.release/libv8_libbase.so)
-target_link_libraries(corejs ${CMAKE_SOURCE_DIR}/v8/v8/out.gn/x64.release/libv8_libplatform.so)
+# target_link_libraries(corejs ${CMAKE_SOURCE_DIR}/v8/v8/out.gn/x64.release/libc++.so)
+target_link_libraries(corejs ${CMAKE_SOURCE_DIR}/v8/v8/out.gn/x64.release/obj/libv8_monolith.a)
+target_link_libraries(corejs ${CMAKE_SOURCE_DIR}/v8/v8/out.gn/x64.release/obj/libv8_libbase.a)
+target_link_libraries(corejs ${CMAKE_SOURCE_DIR}/v8/v8/out.gn/x64.release/obj/libv8_libplatform.a)
 
 # target_link_libraries(corejs ${CMAKE_SOURCE_DIR}/v8/v8/out.gn/x64.release/obj/libcppgc_base.a)
 # target_link_libraries(corejs ${CMAKE_SOURCE_DIR}/v8/v8/out.gn/x64.release/obj/libfuzzer_support.a)
