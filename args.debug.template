@@ -10,3 +10,6 @@ v8_static_library = true
 use_sysroot = false
 use_glib = false
 use_custom_libcxx = false
+use_locally_built_instrumented_libraries = false
+use_lld = false
+treat_warnings_as_errors = false
