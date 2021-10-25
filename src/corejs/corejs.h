@@ -1,3 +1,9 @@
 #pragma once
+#include <string>
 
-int corejs(char* data);
+namespace corejs {
+    int init(char* data);
+    void destroy();
+    void run(const std::string& code);
+}
+
