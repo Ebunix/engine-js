@@ -18,7 +18,14 @@ void createNamedGlobalObject(const std::string& name, Local<ObjectTemplate>& con
 	}
 }
 
-void corejs::funcs::stub(const FunctionCallbackInfo<Value>& info) { }
+void corejs::funcs::stub(const FunctionCallbackInfo<Value>& info) {
+	Local<Object> data = info.Data().As<Object>();
+	Local<String> funcNameStr = LV8String("funcName");
+	const char* funcName = V8CString(data->Get(info.GetIsolate()->GetCurrentContext(), funcNameStr).ToLocalChecked()).c_str();
+	fputs("Stub! ", stdout);
+	fputs(funcName, stdout);
+    fputs("\n", stdout);
+}
 void corejs::funcs::console::log(const v8::FunctionCallbackInfo<v8::Value>& info) {
     for (int i = 0; i < info.Length(); ++i) {
         fputs(V8CString(info[i]).c_str(), stdout);

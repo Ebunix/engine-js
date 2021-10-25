@@ -24,7 +24,6 @@ int corejs::init(char* data) {
   create_params.array_buffer_allocator = v8::ArrayBuffer::Allocator::NewDefaultAllocator();
   isolate = v8::Isolate::New(create_params);
 
-
   return 0;
 }
 
